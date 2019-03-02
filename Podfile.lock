@@ -1,16 +1,26 @@
 PODS:
   - FlickrKit (1.0.9)
+  - Realm (3.13.1):
+    - Realm/Headers (= 3.13.1)
+  - Realm/Headers (3.13.1)
+  - RealmSwift (3.13.1):
+    - Realm (= 3.13.1)
 
 DEPENDENCIES:
   - FlickrKit
+  - RealmSwift
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - FlickrKit
+    - Realm
+    - RealmSwift
 
 SPEC CHECKSUMS:
   FlickrKit: 79ffaf64a12293ba2b1aa8a2e53a4958cb113256
+  Realm: 50071da38fe079e0735e47c9f2eae738c68c5996
+  RealmSwift: 8a1e6a02b7a08cd17a31e3115143fb69fe5f3fb9
 
-PODFILE CHECKSUM: 42a639e989720247622a1c71f943c135968e2e8f
+PODFILE CHECKSUM: 772dbf6b232d74eb944bf62f5db577adcb3d0396
 
 COCOAPODS: 1.6.1

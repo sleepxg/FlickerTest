@@ -7,6 +7,7 @@
 //
 
 import UIKit
+//import RealmSwift
 
 extension UIImageView {
     func downloaded(from url: URL, contentMode mode: UIView.ContentMode = .scaleAspectFit) {  // for swift 4.2 syntax just use ===> mode: UIView.ContentMode
@@ -47,3 +48,8 @@ struct PhotoItem {
     var url:URL
     var title:String
 }
+
+//class PhotoContent : Object {
+//    @objc dynamic var url = ""
+//    @objc dynamic var title = ""
+//}

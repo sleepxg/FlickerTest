@@ -67,7 +67,7 @@ class ViewController: UIViewController ,UITextFieldDelegate{
         }
         self.photoArray.removeAll()
         
-        FlickrKit.shared().initialize(withAPIKey: "yourKEY", sharedSecret: "yourSecretKey")
+        FlickrKit.shared().initialize(withAPIKey: "yourKey", sharedSecret: "secretKey")
         let photoSearch = FKFlickrPhotosSearch()
         photoSearch.text = searchItem
         photoSearch.per_page = counts

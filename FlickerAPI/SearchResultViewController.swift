@@ -35,6 +35,17 @@ class SearchResultViewController: UIViewController,UICollectionViewDataSource,UI
         cell.textLabel.text = photoItem.title
         return cell
     }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as! CollectionViewCell
+        cell.selectImageView.isHighlighted = !cell.selectImageView.isHighlighted
+        
+//        if cell.selectImageView.isHighlighted {
+//            // save
+//        } else {
+//            // delete
+//        }
+    }
+    
     
 }
 

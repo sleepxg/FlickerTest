@@ -7,4 +7,5 @@ target 'FlickerAPI' do
 
   # Pods for FlickerAPI
   pod 'FlickrKit'
+  pod 'RealmSwift'
 end

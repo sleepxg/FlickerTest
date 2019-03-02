@@ -116,18 +116,28 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle" highlightedImage="circle_Full" translatesAutoresizingMaskIntoConstraints="NO" id="F2P-A5-WgX">
+                                                    <rect key="frame" x="133" y="0.0" width="40" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="40" id="Y6f-DQ-qFk"/>
+                                                        <constraint firstAttribute="height" constant="40" id="e8P-td-r96"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                         </view>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="F2P-A5-WgX" secondAttribute="trailing" id="5vC-Ba-Nob"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="gMB-vB-pfR" secondAttribute="trailing" constant="10" id="F1V-pc-OMZ"/>
                                             <constraint firstItem="gMB-vB-pfR" firstAttribute="top" secondItem="xQB-PS-sCz" secondAttribute="bottom" constant="5" id="Lqa-oM-Vh3"/>
                                             <constraint firstItem="gMB-vB-pfR" firstAttribute="leading" secondItem="qTh-4n-HCD" secondAttribute="leadingMargin" constant="10" id="c7h-Nw-fVS"/>
                                             <constraint firstItem="xQB-PS-sCz" firstAttribute="top" secondItem="qTh-4n-HCD" secondAttribute="top" id="j3U-yQ-ZgT"/>
+                                            <constraint firstItem="F2P-A5-WgX" firstAttribute="top" secondItem="qTh-4n-HCD" secondAttribute="top" id="pcL-k3-Cmk"/>
                                             <constraint firstItem="xQB-PS-sCz" firstAttribute="leading" secondItem="qTh-4n-HCD" secondAttribute="leading" id="uVr-zI-vvx"/>
                                             <constraint firstAttribute="trailing" secondItem="xQB-PS-sCz" secondAttribute="trailing" id="yOy-qK-s3f"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="imageView" destination="xQB-PS-sCz" id="NGY-l7-c3v"/>
+                                            <outlet property="selectImageView" destination="F2P-A5-WgX" id="93n-Oi-aKb"/>
                                             <outlet property="textLabel" destination="gMB-vB-pfR" id="yhD-nd-PwB"/>
                                         </connections>
                                     </collectionViewCell>
@@ -170,4 +180,8 @@
             <point key="canvasLocation" x="183" y="134"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="circle" width="50" height="50"/>
+        <image name="circle_Full" width="50" height="50"/>
+    </resources>
 </document>
