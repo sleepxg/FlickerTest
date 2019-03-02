@@ -72,7 +72,6 @@
                         <outlet property="countField" destination="vyE-KY-e6E" id="J4Z-10-ElI"/>
                         <outlet property="searchBtn" destination="uK9-cQ-KsG" id="N3i-Tm-TUi"/>
                         <outlet property="searchField" destination="kvn-Rl-epn" id="o00-bv-stv"/>
-                        <segue destination="0KJ-Vj-34r" kind="show" identifier="showResultSegue" id="v7J-Sg-dRB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -88,7 +87,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="fLi-gY-pem">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="gm0-wK-IAK">
                                     <size key="itemSize" width="173" height="185"/>
@@ -160,6 +159,66 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0NQ-hJ-NOV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2032.8" y="133.5832083958021"/>
+        </scene>
+        <!--My Favorite Collection View Controller-->
+        <scene sceneID="gxV-gv-yWw">
+            <objects>
+                <collectionViewController storyboardIdentifier="myFavoriteCollectionViewController" id="XuY-h1-9Xs" customClass="MyFavoriteCollectionViewController" customModule="FlickerAPI" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="6t7-Nw-KYe">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="IkM-X7-wOM">
+                            <size key="itemSize" width="167" height="180"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="9Zt-aV-vDE" customClass="FavoriteCollectionViewCell" customModule="FlickerAPI" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="167" height="180"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                    <rect key="frame" x="0.0" y="0.0" width="167" height="180"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FXL-30-8hS">
+                                            <rect key="frame" x="0.0" y="0.0" width="167" height="150"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="150" id="fgg-Xh-Jz0"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ep2-7A-3ai">
+                                            <rect key="frame" x="10" y="160" width="147" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="FXL-30-8hS" secondAttribute="trailing" id="GaP-Cr-9wK"/>
+                                    <constraint firstItem="FXL-30-8hS" firstAttribute="top" secondItem="9Zt-aV-vDE" secondAttribute="top" id="Hbg-9m-KCl"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ep2-7A-3ai" secondAttribute="trailing" constant="10" id="Js4-pf-VN8"/>
+                                    <constraint firstItem="Ep2-7A-3ai" firstAttribute="leading" secondItem="9Zt-aV-vDE" secondAttribute="leading" constant="10" id="dgs-vJ-yLh"/>
+                                    <constraint firstItem="FXL-30-8hS" firstAttribute="leading" secondItem="9Zt-aV-vDE" secondAttribute="leading" id="sur-PX-RhS"/>
+                                    <constraint firstItem="Ep2-7A-3ai" firstAttribute="top" secondItem="FXL-30-8hS" secondAttribute="bottom" constant="10" id="xmm-at-Bos"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="imageView" destination="FXL-30-8hS" id="feg-Md-ggW"/>
+                                    <outlet property="textLabel" destination="Ep2-7A-3ai" id="hxe-VD-fDf"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="XuY-h1-9Xs" id="QtG-Z3-Fxg"/>
+                            <outlet property="delegate" destination="XuY-h1-9Xs" id="9ra-Xq-FXH"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g0L-wK-QZL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2904.8000000000002" y="133.5832083958021"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Sce-H0-QT4">

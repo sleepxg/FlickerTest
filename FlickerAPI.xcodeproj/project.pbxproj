@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3038016538B4C296C4D7015A /* Pods_FlickerAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F0D562CD959FFE96EBDCEB6 /* Pods_FlickerAPI.framework */; };
+		4A1552F7222A631300360E69 /* MyFavoriteCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1552F6222A631300360E69 /* MyFavoriteCollectionViewController.swift */; };
+		4A1552F9222A63EE00360E69 /* FavoriteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1552F8222A63EE00360E69 /* FavoriteCollectionViewCell.swift */; };
 		4AA1B7EA2224124900DA767A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA1B7E92224124900DA767A /* AppDelegate.swift */; };
 		4AA1B7EC2224124900DA767A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA1B7EB2224124900DA767A /* ViewController.swift */; };
 		4AA1B7EF2224124900DA767A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AA1B7ED2224124900DA767A /* Main.storyboard */; };
@@ -20,6 +22,8 @@
 
 /* Begin PBXFileReference section */
 		1F0D562CD959FFE96EBDCEB6 /* Pods_FlickerAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlickerAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A1552F6222A631300360E69 /* MyFavoriteCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFavoriteCollectionViewController.swift; sourceTree = "<group>"; };
+		4A1552F8222A63EE00360E69 /* FavoriteCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCollectionViewCell.swift; sourceTree = "<group>"; };
 		4AA1B7E62224124900DA767A /* FlickerAPI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlickerAPI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AA1B7E92224124900DA767A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4AA1B7EB2224124900DA767A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -85,6 +89,8 @@
 				4AA1B7F52224124A00DA767A /* Info.plist */,
 				4AA1B7FB2224196600DA767A /* SearchResultViewController.swift */,
 				4AF4CB5E22277EFC00396C23 /* CollectionViewCell.swift */,
+				4A1552F6222A631300360E69 /* MyFavoriteCollectionViewController.swift */,
+				4A1552F8222A63EE00360E69 /* FavoriteCollectionViewCell.swift */,
 				4AF4CB602227863400396C23 /* MyExtension.swift */,
 			);
 			path = FlickerAPI;
@@ -225,7 +231,9 @@
 			files = (
 				4AA1B7EC2224124900DA767A /* ViewController.swift in Sources */,
 				4AA1B7FC2224196600DA767A /* SearchResultViewController.swift in Sources */,
+				4A1552F7222A631300360E69 /* MyFavoriteCollectionViewController.swift in Sources */,
 				4AF4CB612227863400396C23 /* MyExtension.swift in Sources */,
+				4A1552F9222A63EE00360E69 /* FavoriteCollectionViewCell.swift in Sources */,
 				4AF4CB5F22277EFC00396C23 /* CollectionViewCell.swift in Sources */,
 				4AA1B7EA2224124900DA767A /* AppDelegate.swift in Sources */,
 			);

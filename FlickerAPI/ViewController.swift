@@ -8,6 +8,9 @@
 
 import UIKit
 import FlickrKit
+// change the Key here
+private let myKey = "key"
+private let mySecretKey = "secretKey"
 class ViewController: UIViewController ,UITextFieldDelegate{
 
     @IBOutlet weak var searchField: UITextField!
@@ -67,7 +70,7 @@ class ViewController: UIViewController ,UITextFieldDelegate{
         }
         self.photoArray.removeAll()
         
-        FlickrKit.shared().initialize(withAPIKey: "yourKey", sharedSecret: "secretKey")
+        FlickrKit.shared().initialize(withAPIKey: myKey, sharedSecret: mySecretKey)
         let photoSearch = FKFlickrPhotosSearch()
         photoSearch.text = searchItem
         photoSearch.per_page = counts
@@ -82,10 +85,20 @@ class ViewController: UIViewController ,UITextFieldDelegate{
                         print(photoURL)
                         self.photoArray.append(PhotoItem(url: photoURL, title: photoDic["title"] as! String))
                     }
+                    let tabBarController = UITabBarController()
+                    
                     let resultVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SearchResultViewController") as! SearchResultViewController
+                    resultVC.title = "搜尋結果"
                     resultVC.photoArray = self.photoArray
                     resultVC.searchItem = searchItem
-                    self.navigationController?.pushViewController(resultVC, animated: true)
+                    
+                    let favoriteVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "myFavoriteCollectionViewController")
+                    favoriteVC.title = "我的最愛"
+                    
+                    let controllers = [resultVC,favoriteVC]
+                    tabBarController.viewControllers = controllers
+                    
+                    self.navigationController?.pushViewController(tabBarController, animated: true)
                 }
             } else if let err = error{
                 print(err)
