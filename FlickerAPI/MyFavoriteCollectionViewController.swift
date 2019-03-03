@@ -11,8 +11,8 @@ import RealmSwift
 private let reuseIdentifier = "FavoriteCell"
 
 class MyFavoriteCollectionViewController: UICollectionViewController {
-
-    var photoArray : [PhotoContent] = []
+    let realm = try!Realm()
+    var photoArray : Results<PhotoContent>? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,18 +21,14 @@ class MyFavoriteCollectionViewController: UICollectionViewController {
         // self.clearsSelectionOnViewWillAppear = false
 
         // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        self.collectionView!.register(FavoriteCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
         self.navigationItem.title = "Favorite"
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        photoArray.removeAll()
-        let results = try! Realm().objects(PhotoContent.self)
-        for item in results {
-            photoArray.append(item)
-        }
+        photoArray = try! realm.objects(PhotoContent.self)
     }
     
     /*
@@ -55,15 +51,23 @@ class MyFavoriteCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return photoArray.count
+        if let array = photoArray {
+            return array.count
+        } else {
+            return 0
+        }
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! FavoriteCollectionViewCell
-        let item = photoArray[indexPath.row]
+        guard let item = photoArray?[indexPath.row] else {
+            return cell
+        }
         let imagePath = item.url
         cell.imageView.downloaded(from: imagePath)
-        cell.textLabel.text = item.title
+        let title = item.title
+        cell.textLabel.text = title
+        
         return cell
     }
 

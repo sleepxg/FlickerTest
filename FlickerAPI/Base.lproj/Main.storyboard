@@ -115,7 +115,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle" highlightedImage="circle_Full" translatesAutoresizingMaskIntoConstraints="NO" id="F2P-A5-WgX">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle" translatesAutoresizingMaskIntoConstraints="NO" id="F2P-A5-WgX">
                                                     <rect key="frame" x="153" y="0.0" width="20" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="20" id="Y6f-DQ-qFk"/>
@@ -175,7 +175,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FavoriteCell" id="9Zt-aV-vDE" customClass="FavoriteCollectionViewCell" customModule="FlickerAPI" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="FavoriteCell" reuseIdentifier="FavoriteCell" id="9Zt-aV-vDE" customClass="FavoriteCollectionViewCell" customModule="FlickerAPI" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="167" height="180"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -241,6 +241,5 @@
     </scenes>
     <resources>
         <image name="circle" width="50" height="50"/>
-        <image name="circle_Full" width="50" height="50"/>
     </resources>
 </document>

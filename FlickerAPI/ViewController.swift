@@ -83,11 +83,9 @@ class ViewController: UIViewController ,UITextFieldDelegate{
                     for photoDic in photoArray {
                         let photoURL = FlickrKit.shared().photoURL(for: FKPhotoSize.unknown, fromPhotoDictionary: photoDic)
                         print(photoURL)
-                        let item = PhotoContent()
-                        item.url = photoURL.absoluteString
-                        item.title = photoDic["title"] as! String
+                        let item = PhotoContent(isFavorite: false, myURL: photoURL.absoluteString, myTitle: photoDic["title"] as! String )
+                        item.isFavorite = false
                         self.photoArray.append(item)
-                        //self.photoArray.append(PhotoItem(url: photoURL, title: photoDic["title"] as! String))
                     }
                     let tabBarController = UITabBarController()
                     

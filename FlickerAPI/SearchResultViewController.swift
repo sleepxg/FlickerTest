@@ -17,7 +17,8 @@ class SearchResultViewController: UIViewController,UICollectionViewDataSource,UI
         super.viewDidLoad()
         myCollectionView.delegate = self
         myCollectionView.dataSource = self
-        self.navigationItem.title = "搜尋結果\(searchItem)"
+        self.tabBarController?.navigationItem.title = "搜尋結果\(searchItem)"
+        self.tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveItem(_:)))
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -32,22 +33,34 @@ class SearchResultViewController: UIViewController,UICollectionViewDataSource,UI
         let photoItem = photoArray[indexPath.row]
         let imageURL = photoItem.url
         cell.imageView.downloaded(from: imageURL)
-        cell.textLabel.text = photoItem.title
-        //cell.selectImageView.isHighlighted = false
+        let title = photoItem.title
+        cell.textLabel.text = title
+        
+        cell.selectImageView.image = photoItem.isFavorite ? UIImage(named: "circle_Full") : UIImage(named: "circle")
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! CollectionViewCell
-       // cell.selectImageView.isHighlighted = !cell.selectImageView.isHighlighted
-        print("indexPath.row \(indexPath.row) highLight state \(cell.selectImageView.isHighlighted)")
-//        let obj = photoArray[indexPath.row]
-//        if cell.selectImageView.isHighlighted {
-//            MyRealmManager.sharedInstance.saveRealmObject(obj)
-//        } else {
-//            MyRealmManager.sharedInstance.deleteRealmObject(obj)
-//        }
+        let obj = photoArray[indexPath.row]
+        
+        var imageName = ""
+        if obj.isFavorite {
+            obj.isFavorite = false
+            imageName = "circle"
+        } else {
+            obj.isFavorite = true
+            imageName = "circle_Full"
+        }
+        cell.selectImageView.image = UIImage(named: imageName)
     }
     
-    
+    @objc func saveItem(_ ibaction:UIBarButtonItem){
+        for item in photoArray {
+            if item.isAdded == false {
+                item.isAdded = true
+                MyRealmManager.sharedInstance.saveRealmObject(item)
+            }
+        }
+    }
 }
 

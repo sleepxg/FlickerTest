@@ -50,8 +50,20 @@ struct PhotoItem {
 }
 
 class PhotoContent : Object {
+    @objc dynamic var isFavorite = false
+    @objc dynamic var isAdded = false
     @objc dynamic var url = ""
     @objc dynamic var title = ""
+    convenience init(isFavorite favorite:Bool,myURL url:String,myTitle title:String) {
+        self.init()
+        self.isAdded = false
+        self.isFavorite = favorite
+        self.url = url
+        self.title = title
+    }
+    override static func ignoredProperties() -> [String] {
+        return ["isFavorite","isAdded"]
+    }
 }
 
 class MyRealmManager : NSObject {
