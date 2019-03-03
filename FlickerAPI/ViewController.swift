@@ -16,7 +16,7 @@ class ViewController: UIViewController ,UITextFieldDelegate{
     @IBOutlet weak var searchField: UITextField!
     @IBOutlet weak var countField: UITextField!
     @IBOutlet weak var searchBtn: UIButton!
-    var photoArray : [PhotoItem] = []
+    var photoArray : [PhotoContent] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         searchField.delegate = self
@@ -83,7 +83,11 @@ class ViewController: UIViewController ,UITextFieldDelegate{
                     for photoDic in photoArray {
                         let photoURL = FlickrKit.shared().photoURL(for: FKPhotoSize.unknown, fromPhotoDictionary: photoDic)
                         print(photoURL)
-                        self.photoArray.append(PhotoItem(url: photoURL, title: photoDic["title"] as! String))
+                        let item = PhotoContent()
+                        item.url = photoURL.absoluteString
+                        item.title = photoDic["title"] as! String
+                        self.photoArray.append(item)
+                        //self.photoArray.append(PhotoItem(url: photoURL, title: photoDic["title"] as! String))
                     }
                     let tabBarController = UITabBarController()
                     

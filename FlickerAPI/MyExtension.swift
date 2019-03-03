@@ -7,7 +7,7 @@
 //
 
 import UIKit
-//import RealmSwift
+import RealmSwift
 
 extension UIImageView {
     func downloaded(from url: URL, contentMode mode: UIView.ContentMode = .scaleAspectFit) {  // for swift 4.2 syntax just use ===> mode: UIView.ContentMode
@@ -49,7 +49,32 @@ struct PhotoItem {
     var title:String
 }
 
-//class PhotoContent : Object {
-//    @objc dynamic var url = ""
-//    @objc dynamic var title = ""
-//}
+class PhotoContent : Object {
+    @objc dynamic var url = ""
+    @objc dynamic var title = ""
+}
+
+class MyRealmManager : NSObject {
+    static let sharedInstance = MyRealmManager()
+    private override init() {
+        print("init...")
+    }
+    
+    deinit {
+        print("deinit...")
+    }
+    
+    func saveRealmObject(_ obj:Object) {
+        let realm = try! Realm()
+        try! realm.write{
+            realm.add(obj)
+        }
+    }
+    
+    func deleteRealmObject(_ obj:Object) {
+        let realm = try! Realm()
+        try! realm.write {
+            realm.delete(obj)
+        }
+    }
+}

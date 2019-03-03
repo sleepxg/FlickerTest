@@ -7,11 +7,13 @@
 //
 
 import UIKit
-
+import RealmSwift
 private let reuseIdentifier = "FavoriteCell"
 
 class MyFavoriteCollectionViewController: UICollectionViewController {
 
+    var photoArray : [PhotoContent] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -24,6 +26,15 @@ class MyFavoriteCollectionViewController: UICollectionViewController {
         self.navigationItem.title = "Favorite"
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        photoArray.removeAll()
+        let results = try! Realm().objects(PhotoContent.self)
+        for item in results {
+            photoArray.append(item)
+        }
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -38,20 +49,21 @@ class MyFavoriteCollectionViewController: UICollectionViewController {
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 0
+        return photoArray.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-    
-        // Configure the cell
-    
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! FavoriteCollectionViewCell
+        let item = photoArray[indexPath.row]
+        let imagePath = item.url
+        cell.imageView.downloaded(from: imagePath)
+        cell.textLabel.text = item.title
         return cell
     }
 

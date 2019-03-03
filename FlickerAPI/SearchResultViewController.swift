@@ -7,11 +7,11 @@
 //
 
 import UIKit
-
+private let reuseIdentifier = "myCollectionViewCell"
 class SearchResultViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate{
     
     @IBOutlet weak var myCollectionView: UICollectionView!
-    var photoArray : [PhotoItem] = []
+    var photoArray : [PhotoContent] = []
     var searchItem : String = ""
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,22 +27,24 @@ class SearchResultViewController: UIViewController,UICollectionViewDataSource,UI
         return photoArray.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "myCollectionViewCell", for: indexPath) as! CollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CollectionViewCell
         //imageView.downloaded(from: "http://www.apple.com/euro/ios/ios8/a/generic/images/og.png")
         let photoItem = photoArray[indexPath.row]
         let imageURL = photoItem.url
         cell.imageView.downloaded(from: imageURL)
         cell.textLabel.text = photoItem.title
+        //cell.selectImageView.isHighlighted = false
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! CollectionViewCell
-        cell.selectImageView.isHighlighted = !cell.selectImageView.isHighlighted
-        
+       // cell.selectImageView.isHighlighted = !cell.selectImageView.isHighlighted
+        print("indexPath.row \(indexPath.row) highLight state \(cell.selectImageView.isHighlighted)")
+//        let obj = photoArray[indexPath.row]
 //        if cell.selectImageView.isHighlighted {
-//            // save
+//            MyRealmManager.sharedInstance.saveRealmObject(obj)
 //        } else {
-//            // delete
+//            MyRealmManager.sharedInstance.deleteRealmObject(obj)
 //        }
     }
     
