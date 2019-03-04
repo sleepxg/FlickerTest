@@ -94,7 +94,7 @@ class ViewController: UIViewController ,UITextFieldDelegate{
                     resultVC.photoArray = self.photoArray
                     resultVC.searchItem = searchItem
                     
-                    let favoriteVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "myFavoriteCollectionViewController")
+                    let favoriteVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MyFavoriteCollectionViewController") as! MyFavoriteCollectionViewController
                     favoriteVC.title = "我的最愛"
                     
                     let controllers = [resultVC,favoriteVC]

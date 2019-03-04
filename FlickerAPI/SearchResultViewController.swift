@@ -17,6 +17,10 @@ class SearchResultViewController: UIViewController,UICollectionViewDataSource,UI
         super.viewDidLoad()
         myCollectionView.delegate = self
         myCollectionView.dataSource = self
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.tabBarController?.navigationItem.title = "搜尋結果\(searchItem)"
         self.tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveItem(_:)))
     }

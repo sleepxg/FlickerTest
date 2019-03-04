@@ -8,27 +8,31 @@
 
 import UIKit
 import RealmSwift
-private let reuseIdentifier = "FavoriteCell"
+private let reuseIdentifier = "FavoriteCollectionViewCell"
 
-class MyFavoriteCollectionViewController: UICollectionViewController {
+class MyFavoriteCollectionViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate {
     let realm = try!Realm()
-    var photoArray : Results<PhotoContent>? = nil
+    var photoArray : [PhotoContent] = []
+    @IBOutlet weak var favoriteCollectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
-        self.collectionView!.register(FavoriteCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
+        favoriteCollectionView.dataSource = self
+        favoriteCollectionView.delegate = self
         self.navigationItem.title = "Favorite"
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        photoArray = try! realm.objects(PhotoContent.self)
+        if photoArray.count > 0 {
+            photoArray.removeAll()
+        }
+        let itemArray = try! realm.objects(PhotoContent.self)
+        for item in itemArray {
+            photoArray.append(item)
+        }
+        self.tabBarController?.navigationItem.title = "我的最愛"
+        self.tabBarController?.navigationItem.rightBarButtonItem = nil
     }
     
     /*
@@ -43,31 +47,26 @@ class MyFavoriteCollectionViewController: UICollectionViewController {
 
     // MARK: UICollectionViewDataSource
 
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
 
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        if let array = photoArray {
-            return array.count
-        } else {
-            return 0
-        }
+        return photoArray.count
     }
 
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        //print("\(reuseIdentifier)")
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! FavoriteCollectionViewCell
-        guard let item = photoArray?[indexPath.row] else {
-            return cell
-        }
+        let item = photoArray[indexPath.row]
         let imagePath = item.url
         cell.imageView.downloaded(from: imagePath)
         let title = item.title
         cell.textLabel.text = title
-        
+        //print("url is \(imagePath) and title is \(title)")
         return cell
     }
 
