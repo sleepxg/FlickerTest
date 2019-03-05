@@ -44,6 +44,14 @@ extension UIButton {
     }
 }
 
+extension Array {
+    mutating func remove(at indexes: [Int]) {
+        for index in indexes.sorted(by: >) {
+            remove(at: index)
+        }
+    }
+}
+
 struct PhotoItem {
     var url:URL
     var title:String
@@ -51,18 +59,22 @@ struct PhotoItem {
 
 class PhotoContent : Object {
     @objc dynamic var isFavorite = false
-    @objc dynamic var isAdded = false
+    @objc dynamic var isDelete = false
     @objc dynamic var url = ""
     @objc dynamic var title = ""
     convenience init(isFavorite favorite:Bool,myURL url:String,myTitle title:String) {
         self.init()
-        self.isAdded = false
         self.isFavorite = favorite
+        self.isDelete = false
         self.url = url
         self.title = title
     }
+    func itemCopy()->PhotoContent{
+        let item = PhotoContent(isFavorite: self.isFavorite, myURL: self.url, myTitle: self.title)
+        return item
+    }
     override static func ignoredProperties() -> [String] {
-        return ["isFavorite","isAdded"]
+        return ["isFavorite","isDelete"]
     }
 }
 

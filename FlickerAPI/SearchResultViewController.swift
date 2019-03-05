@@ -22,7 +22,7 @@ class SearchResultViewController: UIViewController,UICollectionViewDataSource,UI
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.navigationItem.title = "搜尋結果\(searchItem)"
-        self.tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveItem(_:)))
+        self.tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "儲存", style: .plain, target: self, action: #selector(saveItem(_:)))
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -60,9 +60,9 @@ class SearchResultViewController: UIViewController,UICollectionViewDataSource,UI
     
     @objc func saveItem(_ ibaction:UIBarButtonItem){
         for item in photoArray {
-            if item.isAdded == false {
-                item.isAdded = true
-                MyRealmManager.sharedInstance.saveRealmObject(item)
+            if item.isFavorite {
+                let obj = item.itemCopy()
+                MyRealmManager.sharedInstance.saveRealmObject(obj)
             }
         }
     }

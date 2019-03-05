@@ -32,7 +32,7 @@ class MyFavoriteCollectionViewController: UIViewController,UICollectionViewDataS
             photoArray.append(item)
         }
         self.tabBarController?.navigationItem.title = "我的最愛"
-        self.tabBarController?.navigationItem.rightBarButtonItem = nil
+        self.tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "刪除", style: .plain, target: self, action: #selector(deleteItem(_:)))
     }
     
     /*
@@ -67,38 +67,37 @@ class MyFavoriteCollectionViewController: UIViewController,UICollectionViewDataS
         let title = item.title
         cell.textLabel.text = title
         //print("url is \(imagePath) and title is \(title)")
+        cell.selectImageView.image = item.isDelete ? UIImage(named: "circle_Full") : UIImage(named: "circle")
         return cell
     }
-
-    // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as! FavoriteCollectionViewCell
+        let obj = photoArray[indexPath.row]
+        
+        var imageName = ""
+        if obj.isDelete {
+            obj.isDelete = false
+            imageName = "circle"
+        } else {
+            obj.isDelete = true
+            imageName = "circle_Full"
+        }
+        cell.selectImageView.image = UIImage(named: imageName)
     }
-    */
+    
+    @objc func deleteItem(_ ibaction:UIBarButtonItem){
+        var deletArray = [NSInteger]()
+        var i = 0
+        for item in photoArray {
+            if item.isDelete{
+                MyRealmManager.sharedInstance.saveRealmObject(item)
+                deletArray.append(i)
+            }
+            i = i + 1
+        }
+        photoArray.remove(at: deletArray)
+        self.favoriteCollectionView.reloadData()
+    }
 
 }

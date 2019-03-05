@@ -197,6 +197,13 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle" highlightedImage="circle_Full" translatesAutoresizingMaskIntoConstraints="NO" id="7eS-UM-JRS">
+                                                    <rect key="frame" x="155" y="0.0" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="20" id="CPf-Am-vxU"/>
+                                                        <constraint firstAttribute="height" constant="20" id="mal-PT-yUl"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                         </view>
                                         <constraints>
@@ -205,10 +212,13 @@
                                             <constraint firstAttribute="trailingMargin" secondItem="C9x-Tp-KCh" secondAttribute="trailing" constant="10" id="Iw5-Ah-Ovc"/>
                                             <constraint firstAttribute="trailing" secondItem="0HR-gv-Y9M" secondAttribute="trailing" id="T5l-LW-vSQ"/>
                                             <constraint firstItem="0HR-gv-Y9M" firstAttribute="leading" secondItem="mCR-Mr-HYe" secondAttribute="leading" id="VRT-Jg-wxJ"/>
+                                            <constraint firstItem="7eS-UM-JRS" firstAttribute="top" secondItem="mCR-Mr-HYe" secondAttribute="top" id="YQj-7P-91Q"/>
                                             <constraint firstItem="0HR-gv-Y9M" firstAttribute="top" secondItem="mCR-Mr-HYe" secondAttribute="top" id="dr5-Pd-k2H"/>
+                                            <constraint firstAttribute="trailing" secondItem="7eS-UM-JRS" secondAttribute="trailing" id="ys3-cE-mbv"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="imageView" destination="0HR-gv-Y9M" id="uL7-Qe-uHT"/>
+                                            <outlet property="selectImageView" destination="7eS-UM-JRS" id="MpK-pN-Zxp"/>
                                             <outlet property="textLabel" destination="C9x-Tp-KCh" id="tS1-22-Veh"/>
                                         </connections>
                                     </collectionViewCell>
@@ -253,5 +263,6 @@
     </scenes>
     <resources>
         <image name="circle" width="50" height="50"/>
+        <image name="circle_Full" width="50" height="50"/>
     </resources>
 </document>
